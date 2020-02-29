@@ -1,14 +1,14 @@
-import {Entity, model, property} from '@loopback/repository';
+import { Entity, model, property } from '@loopback/repository';
 
 @model()
 export class Reviews extends Entity {
   @property({
     type: 'number',
     id: true,
-    generated: false,
-    required: true,
+    generated: true,
+    required: false,
   })
-  id: number;
+  id?: number;
 
   @property({
     type: 'number',
