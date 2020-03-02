@@ -80,9 +80,15 @@ export class ReviewsController {
     },
   })
   async find(
-    @param.query.object('filter', getFilterSchemaFor(Reviews)) filter?: Filter<Reviews>,
+    @param.query.string('student_id') student_id?: string,
+    @param.query.string('course_id') course_id?: string,
   ): Promise<Reviews[]> {
-    return this.reviewsRepository.find(filter);
+    return this.reviewsRepository.find({
+      where: {
+        student_id,
+        course_id,
+      }
+    });
   }
 
   @patch('/reviews', {
