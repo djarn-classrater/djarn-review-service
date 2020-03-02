@@ -29,6 +29,7 @@ export class Reviews extends Entity {
 
   @property({
     type: 'date',
+    default: () => new Date(),
   })
   date?: string;
 
