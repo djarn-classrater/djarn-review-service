@@ -11,16 +11,16 @@ export class Reviews extends Entity {
   id?: number;
 
   @property({
-    type: 'number',
+    type: 'string',
     required: true,
   })
-  student_id: number;
+  student_id: string;
 
   @property({
-    type: 'number',
+    type: 'string',
     required: true,
   })
-  course_id: number;
+  course_id: string;
 
   @property({
     type: 'string',
