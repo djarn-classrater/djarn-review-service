@@ -7,8 +7,8 @@ create table reviews.Reviews
 	date datetime null,
 	constraint Review_id_uindex
 		unique (id),
-	constraint Review_student_id_uindex
-		unique (student_id)
+	constraint Reviews_student_id_uindex
+		unique (student_id, course_id)
 );
 
 alter table reviews.Reviews
