@@ -1,3 +1,5 @@
+create database reviews;
+
 create table reviews.Reviews
 (
 	id int auto_increment,
