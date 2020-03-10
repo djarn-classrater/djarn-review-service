@@ -40,7 +40,7 @@ export class ReviewsController {
         'application/json': {
           schema: getModelSchemaRef(Reviews, {
             title: 'NewReviews',
-            exclude: ['id'],
+            exclude: ['id', 'date'],
           }),
         },
       },
@@ -147,7 +147,10 @@ export class ReviewsController {
     @requestBody({
       content: {
         'application/json': {
-          schema: getModelSchemaRef(Reviews, {partial: true}),
+          schema: getModelSchemaRef(Reviews, {
+            partial: true,
+            exclude: ['id', 'date'],
+          }),
         },
       },
     })
@@ -165,7 +168,16 @@ export class ReviewsController {
   })
   async replaceById(
     @param.path.number('id') id: number,
-    @requestBody() reviews: Reviews,
+    @requestBody({
+      content: {
+        'appliction/json': {
+          schema: getModelSchemaRef(Reviews, {
+            exclude: ['id', 'date'],
+          }),
+        },
+      },
+    })
+    reviews: Reviews,
   ): Promise<void> {
     await this.reviewsRepository.replaceById(id, reviews);
   }
