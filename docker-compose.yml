@@ -6,6 +6,8 @@ services:
     restart: always
     ports:
       - 3001:3000
+    networks:
+      - djarn
 
   reviewsDb:
     image: mysql
@@ -18,3 +20,9 @@ services:
       - ./sql:/docker-entrypoint-initdb.d
     environment:
       MYSQL_ROOT_PASSWORD: 1234
+    networks:
+      - djarn
+
+networks:
+  djarn:
+    external: true
