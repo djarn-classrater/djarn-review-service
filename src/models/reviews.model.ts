@@ -1,4 +1,4 @@
-import { Entity, model, property } from '@loopback/repository';
+import {Entity, model, property} from '@loopback/repository';
 
 @model()
 export class Reviews extends Entity {
@@ -14,13 +14,13 @@ export class Reviews extends Entity {
     type: 'string',
     required: true,
   })
-  student_id: string;
+  studentId: string;
 
   @property({
     type: 'string',
     required: true,
   })
-  course_id: string;
+  courseId: string;
 
   @property({
     type: 'string',
@@ -32,7 +32,6 @@ export class Reviews extends Entity {
     default: () => new Date(),
   })
   date?: string;
-
 
   constructor(data?: Partial<Reviews>) {
     super(data);

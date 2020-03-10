@@ -23,7 +23,7 @@ import {ReviewsRepository} from '../repositories';
 export class ReviewsController {
   constructor(
     @repository(ReviewsRepository)
-    public reviewsRepository : ReviewsRepository,
+    public reviewsRepository: ReviewsRepository,
   ) {}
 
   @post('/reviews', {
@@ -59,7 +59,8 @@ export class ReviewsController {
     },
   })
   async count(
-    @param.query.object('where', getWhereSchemaFor(Reviews)) where?: Where<Reviews>,
+    @param.query.object('where', getWhereSchemaFor(Reviews))
+    where?: Where<Reviews>,
   ): Promise<Count> {
     return this.reviewsRepository.count(where);
   }
@@ -80,14 +81,14 @@ export class ReviewsController {
     },
   })
   async find(
-    @param.query.string('student_id') student_id?: string,
-    @param.query.string('course_id') course_id?: string,
+    @param.query.string('studentId') studentId?: string,
+    @param.query.string('courseId') courseId?: string,
   ): Promise<Reviews[]> {
     return this.reviewsRepository.find({
       where: {
-        student_id,
-        course_id,
-      }
+        studentId,
+        courseId,
+      },
     });
   }
 
@@ -108,7 +109,8 @@ export class ReviewsController {
       },
     })
     reviews: Reviews,
-    @param.query.object('where', getWhereSchemaFor(Reviews)) where?: Where<Reviews>,
+    @param.query.object('where', getWhereSchemaFor(Reviews))
+    where?: Where<Reviews>,
   ): Promise<Count> {
     return this.reviewsRepository.updateAll(reviews, where);
   }
@@ -127,7 +129,8 @@ export class ReviewsController {
   })
   async findById(
     @param.path.number('id') id: number,
-    @param.query.object('filter', getFilterSchemaFor(Reviews)) filter?: Filter<Reviews>
+    @param.query.object('filter', getFilterSchemaFor(Reviews))
+    filter?: Filter<Reviews>,
   ): Promise<Reviews> {
     return this.reviewsRepository.findById(id, filter);
   }
