@@ -2,7 +2,7 @@
   "name": "db",
   "connector": "mysql",
   "url": "",
-  "host": "localhost",
+  "host": "reviewsDb",
   "port": 3306,
   "user": "root",
   "password": "1234",
