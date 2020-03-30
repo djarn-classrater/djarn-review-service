@@ -26,7 +26,7 @@
     "posttest": "npm run lint",
     "test:dev": "lb-mocha --allow-console-logs dist/__tests__/**/*.js && npm run posttest",
     "docker:build": "docker build -t review-service .",
-    "docker:test": "yarn docker:build && docker-compose -f docker-compose.test.yml up --exit-code-from reviews",
+    "docker:test": "docker-compose -f docker-compose.test.yml build && docker-compose -f docker-compose.test.yml up --exit-code-from reviews",
     "docker:run": "docker run -p 3000:3000 -d review-service",
     "migrate": "node ./dist/migrate",
     "prestart": "npm run build",
