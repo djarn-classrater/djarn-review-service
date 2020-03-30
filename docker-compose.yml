@@ -16,7 +16,7 @@ services:
     ports:
       - 3306:3306
     volumes:
-      - ./mysql:/var/lib/mysql
+      - reviewsDb/mysql:/var/lib/mysql
       - ./sql:/docker-entrypoint-initdb.d
     environment:
       MYSQL_ROOT_PASSWORD: 1234
@@ -26,3 +26,6 @@ services:
 networks:
   djarn:
     external: true
+
+volumes:
+  reviewsDb:
