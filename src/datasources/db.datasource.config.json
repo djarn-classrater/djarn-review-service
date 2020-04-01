@@ -1,0 +1,10 @@
+{
+  "name": "db",
+  "connector": "mysql",
+  "url": "",
+  "host": "reviewsDb",
+  "port": 3306,
+  "user": "root",
+  "password": "1234",
+  "database": "reviews"
+}
