@@ -1,4 +1,6 @@
 import {ReviewServiceApplication} from '../..';
+import {ReviewsRepository} from '../../repositories';
+import {DbDataSource} from '../../datasources';
 import {
   createRestAppClient,
   givenHttpServerConfig,
@@ -24,6 +26,11 @@ export async function setupApplication(): Promise<AppWithClient> {
   const client = createRestAppClient(app);
 
   return {app, client};
+}
+
+export async function clearDatabase() {
+  const reviewsRepository = new ReviewsRepository(new DbDataSource());
+  await reviewsRepository.deleteAll();
 }
 
 export interface AppWithClient {
