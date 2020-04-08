@@ -13,6 +13,7 @@ describe('ReviewController', () => {
     courseId: '261361',
     context: 'test',
   };
+  const updateReviewBody: Partial<Reviews> = {context: 'updated'};
 
   before('setupApplication', async () => {
     ({app, client} = await setupApplication());
@@ -48,12 +49,23 @@ describe('ReviewController', () => {
   });
 
   it('Update reviews', async () => {
-    const updateReviewBody: Partial<Reviews> = {context: 'updated'};
     await client
       .patch(`/reviews/${resReviewMock.id}`)
       .send(updateReviewBody)
       .expect(204);
     const res = await client.get(`/reviews/${resReviewMock.id}`);
     expect(res.body).to.containEql(updateReviewBody);
+  });
+
+  it('Get review history', async () => {
+    const res = await client
+      .get('/reviews/history')
+      .query({
+        studentId: '600610773',
+        courseId: '261361',
+      })
+      .expect(200);
+    expect(res.body).to.matchAny(reviewMock);
+    expect(res.body).to.matchAny(updateReviewBody);
   });
 });

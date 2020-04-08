@@ -192,4 +192,29 @@ export class ReviewsController {
   async deleteById(@param.path.number('id') id: number): Promise<void> {
     await this.reviewsRepository.deleteById(id);
   }
+
+  @get('/reviews/history', {
+    responses: {
+      '200': {
+        description: 'Review history',
+        content: {
+          'application/json': {
+            schema: {
+              type: 'array',
+              items: getModelSchemaRef(Reviews, {includeRelations: true}),
+            },
+          },
+        },
+      },
+    },
+  })
+  getReviewHistory() {
+    /*
+    [
+      {id: 1, studentId: '600610773', courseId: '261361', context: 'test', date: ?},
+      {id: 2, studentId: '600610773', courseId: '261361', context: 'updated', date: ?},
+    ];
+    **/
+    throw Error('Not implemented');
+  }
 }
