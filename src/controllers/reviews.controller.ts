@@ -83,10 +83,18 @@ export class ReviewsController {
   async find(
     @param.query.string('studentId') studentId?: string,
     @param.query.string('courseId') courseId?: string,
+    @param.array('excludeStudentIds', 'query', {
+      type: 'string',
+      uniqueItems: true,
+    })
+    excludeIds?: string | string[],
   ): Promise<Reviews[]> {
     return this.reviewsRepository.find({
       where: {
-        studentId,
+        studentId: {
+          eq: studentId,
+          nin: typeof excludeIds === 'string' ? [excludeIds] : excludeIds,
+        },
         courseId,
       },
     });
