@@ -87,7 +87,7 @@ export class ReviewsController {
       type: 'string',
       uniqueItems: true,
     })
-    excludeIds?: string | string[],
+    excludeIds: string | string[] = [],
   ): Promise<Reviews[]> {
     return this.reviewsRepository.find({
       where: {
